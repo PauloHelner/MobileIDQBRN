@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "MobileIDQBRN",
+    "slug": "MobileIDQBRN",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
