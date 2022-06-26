@@ -10,31 +10,41 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
-  const [dadosTotal, setDadosTotal] = useState();
+  let [dadosTotal, setDadosTotal] = useState("");
 
-  
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
+  
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
-    //console.log(LOCAL_IP);
-    axios.get(LOCAL_IP + '/dados/')
-      .then(response => {
-        setDadosTotal(response.data);
-        console.log(response.data);
-      })
-      .catch(error => console.log(error));
-  }, []);
-  useEffect( () => {
-    (async() => {
-      await AsyncStorage.setItem('@dados',JSON.stringify(dadosTotal));
-      //const value = await AsyncStorage.getItem('@dados');
-      //console.log(JSON.parse(value));
-      console.log("aaa");
+    (async () => {
+      const dados = await AsyncStorage.getItem('@dados');
+      //const dados = null;
+      if (dados != null) {
+        console.log(JSON.parse(dados));
+        setDadosTotal(JSON.parse(dados));
+      }
+      else {
+        axios.get(LOCAL_IP + '/dados/')
+          .then(response => {
+            setDadosTotal(response.data);
+            console.log(response.data);
+          })
+          .catch(error => console.log(error));
+      }
     })();
-   
-  },[dadosTotal])
+  }, []);
+  useEffect(() => {
+    (async () => {
+      if(dadosTotal !== ""){
+        await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
+        console.log("saved");
+      }
+      console.log(dadosTotal);
+    })();
+
+  }, [dadosTotal])
 
   return (
     <SafeAreaView style={styles.container}>
