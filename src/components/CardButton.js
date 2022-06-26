@@ -1,35 +1,45 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function CardButton({ onPress }) {
-    return (
-        <>
-            <TouchableOpacity
-                onPress={onPress}
-                style={styles.cardButton}>
-                <Text style={styles.buttonName}>DENGUE</Text>
-                <Text style={styles.buttonInfo}>Frequência Alta</Text>
-            </TouchableOpacity>
-        </>
-    )
+export default class CardButton extends React.Component {
+    constructor(props) {
+        super(props);
+        const freqArray = ["Desconhecida", "Baixa", "Média", "Alta"];
+        const colorArray = ['#2B9EB3', '#FFC482', '#F59777', '#FF6663']
+        this.onPress = props.onPress;
+        this.name = props.name;
+        this.freq = freqArray[props.freq];
+        this.color = colorArray[props.freq];
+    }
+    render() {
+        return (
+            <>
+                <TouchableOpacity
+                    onPress={this.onPress}
+                    style={[styles.cardButton, { backgroundColor: this.color }]}>
+                    <Text style={[styles.buttonName, { color: this.color }]}>{this.name}</Text>
+                    <Text style={styles.buttonInfo}>Frequência {this.freq}</Text>
+                </TouchableOpacity>
+            </>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
     cardButton: {
         padding: 10,
-        width: '80%',
+        width: '90%',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         padding: 10,
         borderRadius: 30,
-        backgroundColor: '#FF6663',
-        marginBottom: 10,
+        marginTop: 5,
+        marginBottom: 5,
     },
     buttonName: {
         position: 'relative',
         width: '100%',
         fontWeight: 'bold',
-        color: '#FF6663',
         fontSize: 20,
         borderRadius: 30,
         textAlign: 'center',

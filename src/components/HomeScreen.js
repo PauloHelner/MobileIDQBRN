@@ -1,69 +1,48 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, ScrollView } from 'react-native';
 import CardButton from './CardButton';
+import { FloatingAction } from "react-native-floating-action";
 
-export default function Informations() {
-    const buttonClickedHandler = () => {
-        console.log('You have been clicked a button!');
-        // do something
-      };
-    
-      return (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.container}>
-            <CardButton onPress={buttonClickedHandler}/>
-          </View>
-        </SafeAreaView>
-      )
+export default function HomeScreen({ navigation }) {
+  const buttonClickedHandler = () => {
+    navigation.navigate("Info");
+  };
+  const onSelectedItemsChange = selectedItems => {
+    this.setState({ selectedItems });
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scroll}>
+        <View style={styles.container}>
+          <CardButton onPress={buttonClickedHandler} name={"DENGUE"} freq={3} />
+          <CardButton onPress={buttonClickedHandler} name={"BOTULISMO"} freq={2} />
+          <CardButton onPress={buttonClickedHandler} name={"exemplinho"} freq={1} />
+          <CardButton onPress={buttonClickedHandler} name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
+          <Text style={styles.paragraph}>Com base em Minha Localização</Text>
+          <Text style={styles.paragraph}>Atualizado por último em: xx/xx/xxxx</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      paddingTop: 40,
-      backgroundColor: '#ecf0f1',
-      borderRadius: 20,
-  
-    },
-    paragraph: {
-      margin: 24,
-      fontSize: 18,
-      fontWeight: 'bold',
-      textAlign: 'left',
-      color: '#34495e',
-    },
-    cardButton: {
-      padding: 10,
-      width: '80%',
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      padding: 10,
-      borderRadius: 30,
-      backgroundColor: '#FF6663',
-      marginBottom: 10,
-    },
-    buttonName: {
-      position: 'relative',
-      width: '100%',
-      fontWeight: 'bold',
-      color: '#FF6663',
-      fontSize: 20,
-      borderRadius: 30,
-      textAlign: 'center',
-      backgroundColor: 'white',
-      padding: 7,
-    },
-    buttonInfo: {
-      position: 'relative',
-      width: '100%',
-      fontWeight: 'bold',
-      color: 'white',
-      fontSize: 15,
-      borderRadius: 30,
-      textAlign: 'left',
-      paddingHorizontal: 10,
-    },
-  });
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+  },
+  scroll: {
+    flex: 1,
+    width: '100%',
+  },
+  paragraph: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'left',
+    color: 'gray',
+  },
+});

@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "MobileIDQBRN",
+    "name": "IDQBRN",
     "slug": "MobileIDQBRN",
+    "icon": "./src/img/icon.png",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
