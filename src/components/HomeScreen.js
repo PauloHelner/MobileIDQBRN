@@ -1,21 +1,39 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View, ScrollView } from 'react-native';
 import CardButton from './CardButton';
-import { FloatingAction } from "react-native-floating-action";
+//import { FloatingAction } from "react-native-floating-action";
+//import { useEffect, useState } from 'react/cjs/react.production.min';
+import { useEffect, useState } from 'react';
+
+import axios from 'axios';
+//import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
-  const buttonClickedHandler = () => {
-    navigation.navigate("Info");
+  const [dadosTotal, setDadosTotal] = useState();
+  
+  const onSelectedItemsChange = selectedItems => {
+    this.setState({ selectedItems });
   };
+  //funciona do mesmo jeito do componentDidMount()
+  useEffect (() => {
+    console.log("aa");
+    axios.get('http://192.168.0.18:8080/dados/')
+    .then(response => {
+      setDadosTotal(response.data);
+      //fs.writeFileSync("./dadosTotal.json",JSON.stringify(response.data));
+      console.log(response.data);
+    })
+    
+  },[]);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-          <CardButton onPress={buttonClickedHandler} name={"DENGUE"} freq={3} />
-          <CardButton onPress={buttonClickedHandler} name={"BOTULISMO"} freq={2} />
-          <CardButton onPress={buttonClickedHandler} name={"exemplinho"} freq={1} />
-          <CardButton onPress={buttonClickedHandler} name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
+          <CardButton  name={"DENGUE"} freq={3} navigation={navigation}/>
+          <CardButton  name={"BOTULISMO"} freq={2} />
+          <CardButton  name={"exemplinho"} freq={1} />
+          <CardButton  name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
           <Text style={styles.paragraph}>Com base em Minha Localização</Text>
           <Text style={styles.paragraph}>Atualizado por último em: xx/xx/xxxx</Text>
         </View>
