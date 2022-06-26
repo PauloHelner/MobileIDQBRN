@@ -11,8 +11,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeScreen({ navigation }) {
   const [dadosTotal, setDadosTotal] = useState();
+  const [doencas_lista, setDoencasLista] = useState([]);
 
-  
+
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
@@ -22,28 +23,40 @@ export default function HomeScreen({ navigation }) {
     axios.get(LOCAL_IP + '/dados/')
       .then(response => {
         setDadosTotal(response.data);
-        console.log(response.data);
+        let aux_lista = [...doencas_lista];
+        response.data.forEach(element => {
+          if (aux_lista.length === 0) {
+            for (let i = 11; i < Object.keys(element).length; i++) {
+              aux_lista.push(Object.keys(element)[i]);
+            }
+          }
+        });
+        setDoencasLista(aux_lista);
       })
       .catch(error => console.log(error));
   }, []);
-  useEffect( () => {
-    (async() => {
-      await AsyncStorage.setItem('@dados',JSON.stringify(dadosTotal));
+  
+  useEffect(() => {
+    (async () => {
+      if (dadosTotal) {
+        try {
+          await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
+        }
+        catch (e) {
+          console.log(e);
+        }
+      }
       //const value = await AsyncStorage.getItem('@dados');
       //console.log(JSON.parse(value));
-      console.log("aaa");
     })();
-   
-  },[dadosTotal])
+
+  }, [dadosTotal])
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-          <CardButton name={"DENGUE"} freq={3} navigation={navigation} />
-          <CardButton name={"BOTULISMO"} freq={2} />
-          <CardButton name={"exemplinho"} freq={1} />
-          <CardButton name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
+          {doencas_lista.map(doenca => <CardButton key={doenca} name={doenca} freq={3} navigation={navigation} />)}
           <Text style={styles.paragraph}>Com base em Minha Localização</Text>
           <Text style={styles.paragraph}>Atualizado por último em: xx/xx/xxxx</Text>
         </View>
