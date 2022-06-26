@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View, Image, ScrollView } from 'react-n
 import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { LOCAL_IP } from '@env'
 
 export default function InfoScreen(props) {
   const [formasDeContagio, setFormasDeContagio] = useState("");
@@ -16,12 +17,13 @@ export default function InfoScreen(props) {
     console.log(props.route.params);
     let doencaNome = props.route.params.toLowerCase();
     doencaNome = capitalize_first_letter(doencaNome);
-    axios.post('http://192.168.0.18:8080/info/doenca', { doenca: doencaNome })
+    axios.post((LOCAL_IP + '/info/doenca'), { doenca: doencaNome })
       .then(res => {
         setFormasDeContagio(res.data.formasdecontagio);
         setRecomendacoes(res.data.recomendacoes);
         setSintomas(res.data.sintomas);
       })
+      .catch(error => console.log(error));
   }, []);
   return (
     <SafeAreaView style={styles.container}>
@@ -32,7 +34,7 @@ export default function InfoScreen(props) {
             <Text style={styles.title}>Nome da Doença</Text>
           </View>
           <Text style={styles.topic} >Formas de Contágio: </Text>
-            <Text style={styles.paragraph} >{formasDeContagio}</Text>
+          <Text style={styles.paragraph} >{formasDeContagio}</Text>
           <Text style={styles.topic} >Sintomas: </Text>
           <Text style={styles.paragraph} >{sintomas}</Text>
           <Text style={styles.topic} >Recomendações: </Text>
