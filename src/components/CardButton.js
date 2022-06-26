@@ -6,16 +6,20 @@ export default class CardButton extends React.Component {
         super(props);
         const freqArray = ["Desconhecida", "Baixa", "Média", "Alta"];
         const colorArray = ['#2B9EB3', '#FFC482', '#F59777', '#FF6663']
-        this.onPress = props.onPress;
+        //this.onPress = props.onPress;
         this.name = props.name;
         this.freq = freqArray[props.freq];
         this.color = colorArray[props.freq];
+        this.navigation = props.navigation;
     }
+    buttonClickedHandler = () => {
+        this.navigation.navigate("Info",this.name);
+      };
     render() {
         return (
             <>
                 <TouchableOpacity
-                    onPress={this.onPress}
+                    onPress={this.buttonClickedHandler}
                     style={[styles.cardButton, { backgroundColor: this.color }]}>
                     <Text style={[styles.buttonName, { color: this.color }]}>{this.name}</Text>
                     <Text style={styles.buttonInfo}>Frequência {this.freq}</Text>
