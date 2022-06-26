@@ -14,7 +14,7 @@ export default function App() {
         headerStyle: {
           backgroundColor: "#2B9EB3",
         },
-        headerTintColor: "white"
+        headerTintColor: "white",
       }}>
         <Stack.Screen name="Lista" component={HomeScreen} options={{
           title: "Lista de Doenças",

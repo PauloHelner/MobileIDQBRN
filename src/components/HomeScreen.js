@@ -7,9 +7,6 @@ export default function HomeScreen({ navigation }) {
   const buttonClickedHandler = () => {
     navigation.navigate("Info");
   };
-  const onSelectedItemsChange = selectedItems => {
-    this.setState({ selectedItems });
-  };
 
   return (
     <SafeAreaView style={styles.container}>
