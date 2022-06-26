@@ -6,6 +6,7 @@ import CardButton from './CardButton';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from '@env'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
@@ -16,16 +17,19 @@ export default function HomeScreen({ navigation }) {
   };
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
-
+    //console.log(LOCAL_IP);
     axios.get(LOCAL_IP + '/dados/')
       .then(response => {
         setDadosTotal(response.data);
-        //fs.writeFileSync("./dadosTotal.json",JSON.stringify(response.data));
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch(error => console.log(error));
-
   }, []);
+  useEffect(async () => {
+    await AsyncStorage.setItem('@dados',JSON.stringify(dadosTotal));
+    const value = await AsyncStorage.getItem('@dados');
+    console.log(JSON.parse(value));
+  },[dadosTotal])
 
   return (
     <SafeAreaView style={styles.container}>
