@@ -1,32 +1,66 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
 export default function InfoScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Image source={require('../img/microscopioFlat.png')} style={{ width: 150, height: 150 }}/>
-      </View>
+      <ScrollView style={styles.scroll}>
+        <View style={[styles.container, { paddingBottom: 20 }]}>
+          <View style={styles.box}>
+            <Image source={require('../img/microscopioFlat.png')} style={{ width: 150, height: 150 }} />
+            <Text style={styles.title}>Nome da Doença</Text>
+          </View>
+          <Text style={styles.topic} >Formas de Contágio: </Text>
+          <Text style={styles.paragraph} >Fowefwef wawuh buh buhbkuhbiuhb uh buhbuiybi biuy biugbiugb burmas de Contágio: </Text>
+          <Text style={styles.topic} >Sintomas: </Text>
+          <Text style={styles.paragraph} >Fowefwef wawuh buh buhbkuhbiuhb uh buhbuiybi biuy biugbiugb burmas de Contágio: </Text>
+          <Text style={styles.topic} >Recomendações: </Text>
+          <Text style={styles.paragraph} >Fowefwef wawuh buh buhbkuhbiuhb uh buhbuiybi biuy biugbiugb burmas de Contágio: </Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    flex: 1,
+    width: '100%',
+  },
   container: {
     flex: 1,
     width: '100%',
-    alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 40,
-    backgroundColor: '#ecf0f1',
-    borderRadius: 20,
-
   },
-  paragraph: {
-    margin: 24,
+  box: {
+    width: '90%',
+    maxWidth: 400,
+    flexDirection: 'row',
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 20,
+  },
+  title: {
+    flex: 1,
+    flexWrap: 'wrap',
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+    textAlign: 'left',
+    color: '#34495e',
+    textAlignVertical: 'center',
+  },
+  topic: {
+    margin: 15,
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'left',
+    color: '#34495e',
+  },
+  paragraph: {
+    marginHorizontal: 25,
+    fontSize: 15,
     textAlign: 'left',
     color: '#34495e',
   },
