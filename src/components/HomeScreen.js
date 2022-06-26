@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function HomeScreen({ navigation }) {
   const [dadosTotal, setDadosTotal] = useState();
 
+  
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
@@ -21,14 +22,18 @@ export default function HomeScreen({ navigation }) {
     axios.get(LOCAL_IP + '/dados/')
       .then(response => {
         setDadosTotal(response.data);
-        //console.log(response.data);
+        console.log(response.data);
       })
       .catch(error => console.log(error));
   }, []);
-  useEffect(async () => {
-    await AsyncStorage.setItem('@dados',JSON.stringify(dadosTotal));
-    const value = await AsyncStorage.getItem('@dados');
-    console.log(JSON.parse(value));
+  useEffect( () => {
+    (async() => {
+      await AsyncStorage.setItem('@dados',JSON.stringify(dadosTotal));
+      //const value = await AsyncStorage.getItem('@dados');
+      //console.log(JSON.parse(value));
+      console.log("aaa");
+    })();
+   
   },[dadosTotal])
 
   return (
