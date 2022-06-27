@@ -20,5 +20,11 @@ Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 Para utilizar o aplicativo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
 ![image](https://user-images.githubusercontent.com/53433382/175994180-c0dee24c-7932-490a-b1a5-94a69d86d957.png)
+
+Uma página inicial para solicitar a localização será carregada, aguarde até que esteja totalmente carregada:
+
+<img src="[https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg](https://user-images.githubusercontent.com/53433382/175995203-cabedcfe-2507-4c75-8ee2-f1a6914dda4d.jpeg)" width=50% height=50%>
+
 <img src="https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg" width=50% height=50%>
+
 <img src="https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg" width=50% height=50%>
