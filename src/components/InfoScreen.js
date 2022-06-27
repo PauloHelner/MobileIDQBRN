@@ -6,6 +6,8 @@ import axios from 'axios';
 import { LOCAL_IP } from '@env'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const IP_PORT = LOCAL_IP;
+
 export default function InfoScreen(props) {
   const [formasDeContagio, setFormasDeContagio] = useState("");
   const [recomendacoes, setRecomendacoes] = useState("");
@@ -22,7 +24,7 @@ export default function InfoScreen(props) {
         setInfos(JSON.parse(infos));
       }
       else {
-        axios.get((LOCAL_IP + '/info/doenca'))
+        axios.get((IP_PORT + '/info/doenca'))
           .then(res => {
             console.log(res.data);
             setInfos(res.data);
@@ -30,23 +32,23 @@ export default function InfoScreen(props) {
       }
     })();
   }, []);
-  useEffect(()=>{
-      (async () =>{
-        if(infos !== []){
-          await AsyncStorage.setItem('@infos',JSON.stringify(infos));
-          var doencaNome = props.route.params.toLowerCase();
-          doencaNome = capitalize_first_letter(doencaNome);
-          for(let i = 0; i < infos.length; i++){
-            if(infos[i]['doenca'] === doencaNome){
-              setRecomendacoes(infos[i]['recomendacoes']);
-              setFormasDeContagio(infos[i]['formasdecontagio']);
-              setSintomas(infos[i]['sintomas']);
-              break;
-            }
+  useEffect(() => {
+    (async () => {
+      if (infos !== []) {
+        await AsyncStorage.setItem('@infos', JSON.stringify(infos));
+        var doencaNome = props.route.params.toLowerCase();
+        doencaNome = capitalize_first_letter(doencaNome);
+        for (let i = 0; i < infos.length; i++) {
+          if (infos[i]['doenca'] === doencaNome) {
+            setRecomendacoes(infos[i]['recomendacoes']);
+            setFormasDeContagio(infos[i]['formasdecontagio']);
+            setSintomas(infos[i]['sintomas']);
+            break;
           }
         }
-      })();
-  },[infos])
+      }
+    })();
+  }, [infos])
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
