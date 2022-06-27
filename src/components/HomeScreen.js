@@ -10,46 +10,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
-  const [dadosTotal, setDadosTotal] = useState();
+  const [dadosTotal, setDadosTotal] = useState("");
   const [doencas_lista, setDoencasLista] = useState([]);
-
 
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
+  
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
-    //console.log(LOCAL_IP);
-    axios.get(LOCAL_IP + '/dados/')
-      .then(response => {
-        setDadosTotal(response.data);
-        let aux_lista = [...doencas_lista];
-        response.data.forEach(element => {
-          if (aux_lista.length === 0) {
-            for (let i = 11; i < Object.keys(element).length; i++) {
-              aux_lista.push(Object.keys(element)[i]);
-            }
-          }
-        });
-        setDoencasLista(aux_lista);
-      })
-      .catch(error => console.log(error));
+    (async () => {
+      const dados = await AsyncStorage.getItem('@dados');
+      //const dados = null;
+      if (dados != null) {
+        console.log(JSON.parse(dados));
+        setDadosTotal(JSON.parse(dados));
+      }
+      else {
+        axios.get(LOCAL_IP + '/dados/')
+          .then(response => {
+            setDadosTotal(response.data);
+            console.log(response.data);
+          })
+          .catch(error => console.log(error));
+      }
+    })();
   }, []);
-  
   useEffect(() => {
     (async () => {
-      if (dadosTotal) {
-        try {
-          await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
-        }
-        catch (e) {
-          console.log(e);
+      if(dadosTotal !== ""){
+        await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
+        console.log("saved");
+        let aux_lista = [...doencas_lista];
+        const element = dadosTotal[0];
+        if(aux_lista.lenght === 0){
+          for(let i = 11; i < Object.keys(element).lenght; i++){
+            aux_lista.push(Object.keys(element)[i]);
+          }
+          setDoencasLista(aux_lista);
         }
       }
-      //const value = await AsyncStorage.getItem('@dados');
-      //console.log(JSON.parse(value));
+      console.log(dadosTotal);
     })();
-
   }, [dadosTotal])
 
   return (
