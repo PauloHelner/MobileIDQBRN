@@ -18,8 +18,7 @@ Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 > expo start
 
 Após ver o IP local no terminal (representado por '172.15.1.14'), altere as variáveis IP_PORT nos dois arquivos demonstrados abaixo:
-![image](https://user-images.githubusercontent.com/53433382/176000032-9b4a57c5-292f-4603-86d9-4e6116b1985d.png)
-![image](https://user-images.githubusercontent.com/53433382/176000292-25921bec-7539-4d80-a746-a62e010d13ec.png)
+<img src="https://user-images.githubusercontent.com/53433382/176000032-9b4a57c5-292f-4603-86d9-4e6116b1985d.png" width=30% height=30%> <img src="https://user-images.githubusercontent.com/53433382/176000292-25921bec-7539-4d80-a746-a62e010d13ec.png" width=30% height=30%>
 
 A partir de agora, o aplicativo está pronto para uso, para utilizá-lo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
