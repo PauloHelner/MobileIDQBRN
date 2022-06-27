@@ -29,6 +29,7 @@ Uma soliticitação para acessar a localização do celular aparecerá na tela, 
 
 <img src="https://user-images.githubusercontent.com/53433382/175995671-04f043dc-3894-4e0c-af9a-13c7cebfb086.jpeg" width=50% height=50%>
 
-<img src="https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg" width=50% height=50%>
+Após permitido, uma página com a lista de doenças, com frequências baseadas em uma área próxima a sua localização atual será mostrada:
 
-<img src="https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg" width=30% height=30%>
