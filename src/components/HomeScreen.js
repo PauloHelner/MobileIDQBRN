@@ -100,8 +100,18 @@ export default function HomeScreen({ navigation }) {
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
     (async () => {
-      const dados = await AsyncStorage.getItem('@dados');
-      const dados_lista = await AsyncStorage.getItem('@doencas');
+      try {
+        var dados = await AsyncStorage.getItem('@dados');
+        var dados_lista = await AsyncStorage.getItem('@doencas');
+      }
+      catch (e) {
+        axios.get(LOCAL_IP + '/dados/')
+          .then(response => {
+            console.log("Dados Recebidos!");
+            setDadosTotal(response.data);
+          })
+          .catch(error => console.log(error));
+      }
       //const dados = null;
       if (dados != null && dados_lista != null) {
         setFlag(false);
