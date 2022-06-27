@@ -18,7 +18,7 @@ Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 > expo start
 
 Após ver o IP local no terminal (representado por '172.15.1.14'), altere as variáveis IP_PORT nos dois arquivos demonstrados abaixo:
-![image](https://user-images.githubusercontent.com/53433382/175999611-ce7a5de5-af4f-4d5f-a060-991e09c48f37.png)
+![image](https://user-images.githubusercontent.com/53433382/175999767-d28e6b96-e56d-46e6-9802-f0effa2271e9.png)
 ![ip_info](https://user-images.githubusercontent.com/53433382/175996733-ee3f5e1b-e59a-4954-8f07-13523d8bf00d.jpeg)
 ![ip_home](https://user-images.githubusercontent.com/53433382/175996743-515d2f33-8533-4bb1-a770-e35f579cfa32.jpeg)
 
