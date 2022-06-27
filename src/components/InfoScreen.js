@@ -4,27 +4,49 @@ import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from '@env'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function InfoScreen(props) {
   const [formasDeContagio, setFormasDeContagio] = useState("");
   const [recomendacoes, setRecomendacoes] = useState("");
   const [sintomas, setSintomas] = useState("");
+  const [infos, setInfos] = useState([]);
   function capitalize_first_letter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   useEffect(() => {
-    console.log(props.route.params);
-    var doencaNome = props.route.params.toLowerCase();
-    doencaNome = capitalize_first_letter(doencaNome);
-    axios.post((LOCAL_IP + '/info/doenca'), { doenca: doencaNome })
-      .then(res => {
-        setFormasDeContagio(res.data.formasdecontagio);
-        setRecomendacoes(res.data.recomendacoes);
-        setSintomas(res.data.sintomas);
-      })
-      .catch(error => console.log(error));
+    (async () => {
+      const infos = await AsyncStorage.getItem('@infos');
+      if (infos != null) {
+        setInfos(JSON.parse(infos));
+      }
+      else {
+        axios.get((LOCAL_IP + '/info/doenca'))
+          .then(res => {
+            console.log(res.data);
+            setInfos(res.data);
+          })
+      }
+    })();
   }, []);
+  useEffect(()=>{
+      (async () =>{
+        if(infos !== []){
+          await AsyncStorage.setItem('@infos',JSON.stringify(infos));
+          var doencaNome = props.route.params.toLowerCase();
+          doencaNome = capitalize_first_letter(doencaNome);
+          for(let i = 0; i < infos.length; i++){
+            if(infos[i]['doenca'] === doencaNome){
+              setRecomendacoes(infos[i]['recomendacoes']);
+              setFormasDeContagio(infos[i]['formasdecontagio']);
+              setSintomas(infos[i]['sintomas']);
+              break;
+            }
+          }
+        }
+      })();
+  },[infos])
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
