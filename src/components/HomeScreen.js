@@ -7,6 +7,8 @@ import axios from 'axios';
 import { LOCAL_IP } from '@env'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const IP_PORT = LOCAL_IP;
+
 const range = 0.5;
 var casosTotais = {};
 var incomplete_list = [];
@@ -105,7 +107,7 @@ export default function HomeScreen({ navigation }) {
         var dados_lista = await AsyncStorage.getItem('@doencas');
       }
       catch (e) {
-        axios.get(LOCAL_IP + '/dados/')
+        axios.get(IP_PORT + '/dados/')
           .then(response => {
             console.log("Dados Recebidos!");
             setDadosTotal(response.data);
@@ -123,7 +125,7 @@ export default function HomeScreen({ navigation }) {
         setButton(true);
       }
       else {
-        axios.get(LOCAL_IP + '/dados/')
+        axios.get(IP_PORT + '/dados/')
           .then(response => {
             console.log("Dados Recebidos!");
             setDadosTotal(response.data);
