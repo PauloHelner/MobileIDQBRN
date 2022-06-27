@@ -23,7 +23,7 @@ Para utilizar o aplicativo, basta scannear o QRCode fornecido, como mostra a fig
 
 Uma página inicial para solicitar a localização será carregada, aguarde até que esteja totalmente carregada:
 
-<img src="[https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg](https://user-images.githubusercontent.com/53433382/175995203-cabedcfe-2507-4c75-8ee2-f1a6914dda4d.jpeg)" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/53433382/175995203-cabedcfe-2507-4c75-8ee2-f1a6914dda4d.jpeg" width=50% height=50%>
 
 Uma soliticitação para acessar a localização do celular aparecerá na tela, é imprescindível que seja AUTORIZADO:
 
