@@ -43,8 +43,9 @@ export default function HomeScreen({ navigation }) {
         console.log("saved");
         let aux_lista = [...doencas_lista];
         const element = dadosTotal[0];
-        if(aux_lista.lenght === 0){
-          for(let i = 11; i < Object.keys(element).lenght; i++){
+        if(aux_lista.length === 0){
+          console.log("qwe");
+          for(let i = 11; i < Object.keys(element).length; i++){
             aux_lista.push(Object.keys(element)[i]);
           }
           setDoencasLista(aux_lista);
