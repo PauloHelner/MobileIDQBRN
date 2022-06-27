@@ -40,4 +40,4 @@ O usuário poderá clicar no botão de localizar a qualquer momento, atualizando
 
 Para ver uma informação de uma determinada doença, basta clicar na doença desejada, onde será redirecionado para outra página:
 
-![info](https://user-images.githubusercontent.com/53433382/175997604-db1eda11-bcda-40f8-9d8c-d7003293b7ac.jpeg)
+<img src="https://user-images.githubusercontent.com/53433382/175997604-db1eda11-bcda-40f8-9d8c-d7003293b7ac.jpeg" width=30% height=30%>
