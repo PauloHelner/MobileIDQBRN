@@ -20,5 +20,5 @@ Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 Para utilizar o aplicativo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
 ![image](https://user-images.githubusercontent.com/53433382/175994180-c0dee24c-7932-490a-b1a5-94a69d86d957.png)
-![list_doencas_1](https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg)
-![list_doencas_2](https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg)
+<img src="https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg" width=50% height=50%>
+<img src="https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg" width=50% height=50%>
