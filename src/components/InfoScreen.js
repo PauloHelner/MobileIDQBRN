@@ -14,7 +14,6 @@ export default function InfoScreen(props) {
   }
 
   useEffect(() => {
-    console.log(props.route.params);
     var doencaNome = props.route.params.toLowerCase();
     doencaNome = capitalize_first_letter(doencaNome);
     axios.post((LOCAL_IP + '/info/doenca'), { doenca: doencaNome })
