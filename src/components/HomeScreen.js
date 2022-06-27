@@ -1,9 +1,8 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View, ScrollView, Button} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, ScrollView } from 'react-native';
 import CardButton from './CardButton';
 //import { FloatingAction } from "react-native-floating-action";
 //import { useEffect, useState } from 'react/cjs/react.production.min';
-import * as Location from 'expo-location';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from '@env'
@@ -14,40 +13,6 @@ export default function HomeScreen({ navigation }) {
   const [dadosTotal, setDadosTotal] = useState("");
   const [doencas_lista, setDoencasLista] = useState([]);
   const [flag_salvar, setFlag] = useState(true);
-
-  const [location, setLocation] = useState(null);
-  const [currentLatitude, setCurrentLatitude] = useState('');
-  const [currentLongitude, setCurrentLongitude] = useState('');
-  const [currentTimestamp, setCurrentTimestamp] = useState();
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  const callLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
-      return;
-    }
-
-    let location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
-    setCurrentLatitude(location.coords.latitude);
-    setCurrentLongitude(location.coords.longitude);
-    const date = new Date(location.timestamp);
-    setCurrentTimestamp(date.toString());
-  };
-
-  //dummy text only for testing, may be erased
-  let text = 'Waiting..';
-  let data = '';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-    text =  "Latitude: " + JSON.stringify(currentLatitude) + "\nLongitude: " + JSON.stringify(currentLongitude);
-    // data = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp);
-    //const d = new Date(currentTimestamp);
-    //data = d.toString;
-  }
 
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
@@ -110,9 +75,8 @@ export default function HomeScreen({ navigation }) {
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
           {doencas_lista.map(doenca => <CardButton key={doenca} name={doenca} freq={3} navigation={navigation} />)}
-          <Text style={styles.paragraph}>{text}</Text>
-          <Text style={styles.paragraph}>Atualizado por último em: {currentTimestamp}</Text>
-          <Button title="Localizar" onPress = {callLocation}/>
+          <Text style={styles.paragraph}>Com base em Minha Localização</Text>
+          <Text style={styles.paragraph}>Atualizado por último em: xx/xx/xxxx</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
