@@ -19,8 +19,6 @@ Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 
 Após ver o IP local no terminal (representado por '172.15.1.14'), altere as variáveis IP_PORT nos dois arquivos demonstrados abaixo:
 ![image](https://user-images.githubusercontent.com/53433382/176000032-9b4a57c5-292f-4603-86d9-4e6116b1985d.png)
-![ip_info](https://user-images.githubusercontent.com/53433382/175996733-ee3f5e1b-e59a-4954-8f07-13523d8bf00d.jpeg)
-![ip_home](https://user-images.githubusercontent.com/53433382/175996743-515d2f33-8533-4bb1-a770-e35f579cfa32.jpeg)
 
 A partir de agora, o aplicativo está pronto para uso, para utilizá-lo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
