@@ -17,6 +17,9 @@ Este comando irá iniciar a conexão com o Banco de Dados no Atlas MongoDB.
 Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 > expo start
 
+![ip_info](https://user-images.githubusercontent.com/53433382/175996733-ee3f5e1b-e59a-4954-8f07-13523d8bf00d.jpeg)
+![ip_home](https://user-images.githubusercontent.com/53433382/175996743-515d2f33-8533-4bb1-a770-e35f579cfa32.jpeg)
+
 Para utilizar o aplicativo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
 ![qrcode](https://user-images.githubusercontent.com/53433382/175996739-694a17a5-99ed-4a66-99e5-3a2656266de7.jpeg)
@@ -32,9 +35,9 @@ Uma soliticitação para acessar a localização do celular aparecerá na tela, 
 Após permitido, uma página com a lista de doenças, com frequências baseadas em uma área próxima a sua localização atual será mostrada:
 
 <img src="https://user-images.githubusercontent.com/53433382/175994242-f3365411-c3a7-44c9-b014-19350a25793c.jpeg" width=30% height=30%> <img src="https://user-images.githubusercontent.com/53433382/175994260-4d14dbdf-c158-448f-9974-7b6f61979540.jpeg" width=30% height=30%>
-![ip_info](https://user-images.githubusercontent.com/53433382/175996733-ee3f5e1b-e59a-4954-8f07-13523d8bf00d.jpeg)
-![ip_home](https://user-images.githubusercontent.com/53433382/175996743-515d2f33-8533-4bb1-a770-e35f579cfa32.jpeg)
 
+O usuário poderá clicar no botão de localizar a qualquer momento, atualizando sua posição.
 
+Para ver uma informação de uma determinada doença, basta clicar na doença desejada, onde será redirecionado para outra página:
 
-
+![info](https://user-images.githubusercontent.com/53433382/175997604-db1eda11-bcda-40f8-9d8c-d7003293b7ac.jpeg)
