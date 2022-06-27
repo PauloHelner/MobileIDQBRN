@@ -7,10 +7,13 @@ import * as Location from 'expo-location';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_IP } from '@env'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
-  const [dadosTotal, setDadosTotal] = useState();
+  const [dadosTotal, setDadosTotal] = useState("");
+  const [doencas_lista, setDoencasLista] = useState([]);
+  const [flag_salvar, setFlag] = useState(true);
 
   const [location, setLocation] = useState(null);
   const [currentLatitude, setCurrentLatitude] = useState('');
@@ -49,27 +52,64 @@ export default function HomeScreen({ navigation }) {
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
+
+  function filterDoencas(element) {
+    let aux_lista = [...doencas_lista];
+
+    if (aux_lista.length === 0) {
+      console.log("Doenças Filtradas");
+      for (let i = 11; i < Object.keys(element).length; i++) {
+        aux_lista.push(Object.keys(element)[i]);
+      }
+      return aux_lista;
+    }
+  }
+
+
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
-
-    axios.get(LOCAL_IP + '/dados/')
-      .then(response => {
-        setDadosTotal(response.data);
-        //fs.writeFileSync("./dadosTotal.json",JSON.stringify(response.data));
-        console.log(response.data);
-      })
-      .catch(error => console.log(error));
-
+    (async () => {
+      const dados = await AsyncStorage.getItem('@dados');
+      const dados_lista = await AsyncStorage.getItem('@doencas');
+      //const dados = null;
+      if (dados != null) {
+        //console.log(JSON.parse(dados));
+        setFlag(false);
+        setDadosTotal(JSON.parse(dados));
+        setDoencasLista(JSON.parse(dados_lista));
+        const keys = await AsyncStorage.getAllKeys()
+        await AsyncStorage.multiRemove(keys)
+        console.log("Dados Limpados");
+      }
+      else {
+        axios.get(LOCAL_IP + '/dados/')
+          .then(response => {
+            console.log("Dados Recebidos!");
+            setDadosTotal(response.data);
+          })
+          .catch(error => console.log(error));
+      }
+    })();
   }, []);
+  useEffect(() => {
+    (async () => {
+      if (dadosTotal !== "" && flag_salvar) {
+        await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
+        const element = dadosTotal[0];
+        const aux_lista = filterDoencas(element)
+        setDoencasLista(aux_lista);
+        await AsyncStorage.setItem('@doencas', JSON.stringify(aux_lista));
+        console.log("Dados Armazenados");
+      }
+      //console.log(dadosTotal);
+    })();
+  }, [dadosTotal])
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-          <CardButton name={"DENGUE"} freq={3} navigation={navigation} />
-          <CardButton name={"BOTULISMO"} freq={2} />
-          <CardButton name={"exemplinho"} freq={1} />
-          <CardButton name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
+          {doencas_lista.map(doenca => <CardButton key={doenca} name={doenca} freq={3} navigation={navigation} />)}
           <Text style={styles.paragraph}>{text}</Text>
           <Text style={styles.paragraph}>Atualizado por último em: {currentTimestamp}</Text>
           <Button title="Localizar" onPress = {callLocation}/>

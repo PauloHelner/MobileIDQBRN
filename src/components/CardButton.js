@@ -13,8 +13,8 @@ export default class CardButton extends React.Component {
         this.navigation = props.navigation;
     }
     buttonClickedHandler = () => {
-        this.navigation.navigate("Info",this.name);
-      };
+        this.navigation.navigate("Info", this.name);
+    };
     render() {
         return (
             <>
