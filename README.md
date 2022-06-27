@@ -17,10 +17,11 @@ Este comando irá iniciar a conexão com o Banco de Dados no Atlas MongoDB.
 Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
 > expo start
 
+Após ver o IP local no terminal (representado por '172.15.1.14'), altere as variáveis IP_PORT nos dois arquivom demonstrados abaixo:
 ![ip_info](https://user-images.githubusercontent.com/53433382/175996733-ee3f5e1b-e59a-4954-8f07-13523d8bf00d.jpeg)
 ![ip_home](https://user-images.githubusercontent.com/53433382/175996743-515d2f33-8533-4bb1-a770-e35f579cfa32.jpeg)
 
-Para utilizar o aplicativo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
+A partir de agora, o aplicativo está pronto para uso, para utilizá-lo, basta scannear o QRCode fornecido, como mostra a figura abaixo:
 
 ![qrcode](https://user-images.githubusercontent.com/53433382/175996739-694a17a5-99ed-4a66-99e5-3a2656266de7.jpeg)
 
