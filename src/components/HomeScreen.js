@@ -12,25 +12,45 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function HomeScreen({ navigation }) {
   const [dadosTotal, setDadosTotal] = useState("");
   const [doencas_lista, setDoencasLista] = useState([]);
+  const [flag_salvar, setFlag] = useState(true);
 
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
   };
-  
+
+  function filterDoencas(element) {
+    let aux_lista = [...doencas_lista];
+
+    if (aux_lista.length === 0) {
+      console.log("Doenças Filtradas");
+      for (let i = 11; i < Object.keys(element).length; i++) {
+        aux_lista.push(Object.keys(element)[i]);
+      }
+      return aux_lista;
+    }
+  }
+
+
   //funciona do mesmo jeito do componentDidMount()
   useEffect(() => {
     (async () => {
       const dados = await AsyncStorage.getItem('@dados');
+      const dados_lista = await AsyncStorage.getItem('@doencas');
       //const dados = null;
       if (dados != null) {
-        console.log(JSON.parse(dados));
+        //console.log(JSON.parse(dados));
+        setFlag(false);
         setDadosTotal(JSON.parse(dados));
+        setDoencasLista(JSON.parse(dados_lista));
+        const keys = await AsyncStorage.getAllKeys()
+        await AsyncStorage.multiRemove(keys)
+        console.log("Dados Limpados");
       }
       else {
         axios.get(LOCAL_IP + '/dados/')
           .then(response => {
+            console.log("Dados Recebidos!");
             setDadosTotal(response.data);
-            console.log(response.data);
           })
           .catch(error => console.log(error));
       }
@@ -38,20 +58,15 @@ export default function HomeScreen({ navigation }) {
   }, []);
   useEffect(() => {
     (async () => {
-      if(dadosTotal !== ""){
+      if (dadosTotal !== "" && flag_salvar) {
         await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
-        console.log("saved");
-        let aux_lista = [...doencas_lista];
         const element = dadosTotal[0];
-        if(aux_lista.length === 0){
-          console.log("qwe");
-          for(let i = 11; i < Object.keys(element).length; i++){
-            aux_lista.push(Object.keys(element)[i]);
-          }
-          setDoencasLista(aux_lista);
-        }
+        const aux_lista = filterDoencas(element)
+        setDoencasLista(aux_lista);
+        await AsyncStorage.setItem('@doencas', JSON.stringify(aux_lista));
+        console.log("Dados Armazenados");
       }
-      console.log(dadosTotal);
+      //console.log(dadosTotal);
     })();
   }, [dadosTotal])
 
