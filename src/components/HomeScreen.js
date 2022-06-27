@@ -80,6 +80,7 @@ export default function HomeScreen({ navigation }) {
         }
       }
     }
+    setDoencasLista([]);
     setDoencasLista(incomplete_list);
   }
 
@@ -106,9 +107,9 @@ export default function HomeScreen({ navigation }) {
         setFlag(false);
         setDadosTotal(JSON.parse(dados));
         incomplete_list = JSON.parse(dados_lista);
-        const keys = await AsyncStorage.getAllKeys()
-        await AsyncStorage.multiRemove(keys)
-        console.log("Dados Limpados");
+        //const keys = await AsyncStorage.getAllKeys()
+        //await AsyncStorage.multiRemove(keys)
+        //console.log("Dados Limpados");
         setButton(true);
       }
       else {
