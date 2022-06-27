@@ -14,7 +14,7 @@ Para iniciar o servidor, abra um novo terminal na pasta "backend" do repositóri
 
 Este comando irá iniciar a conexão com o Banco de Dados no Atlas MongoDB.
 
-Uma vez terminado o download, para iniciar a execução do mobile app, utilize:
+Uma vez conectado com o servidor, para iniciar a execução do mobile app, utilize:
 > expo start
 
 ![qrcode](https://user-images.githubusercontent.com/53433382/175996739-694a17a5-99ed-4a66-99e5-3a2656266de7.jpeg)
