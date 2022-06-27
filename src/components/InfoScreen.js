@@ -15,7 +15,7 @@ export default function InfoScreen(props) {
 
   useEffect(() => {
     console.log(props.route.params);
-    let doencaNome = props.route.params.toLowerCase();
+    var doencaNome = props.route.params.toLowerCase();
     doencaNome = capitalize_first_letter(doencaNome);
     axios.post((LOCAL_IP + '/info/doenca'), { doenca: doencaNome })
       .then(res => {
@@ -31,7 +31,7 @@ export default function InfoScreen(props) {
         <View style={[styles.container, { paddingBottom: 20 }]}>
           <View style={styles.box}>
             <Image source={require('../img/microscopioFlat.png')} style={{ width: 150, height: 150 }} />
-            <Text style={styles.title}>Nome da Doença</Text>
+            <Text style={styles.title}>{props.route.params}</Text>
           </View>
           <Text style={styles.topic} >Formas de Contágio: </Text>
           <Text style={styles.paragraph} >{formasDeContagio}</Text>

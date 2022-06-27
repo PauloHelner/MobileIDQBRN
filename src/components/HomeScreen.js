@@ -10,7 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import fs from 'fs'
 
 export default function HomeScreen({ navigation }) {
-  let [dadosTotal, setDadosTotal] = useState("");
+  const [dadosTotal, setDadosTotal] = useState("");
+  const [doencas_lista, setDoencasLista] = useState([]);
 
   const onSelectedItemsChange = selectedItems => {
     this.setState({ selectedItems });
@@ -40,20 +41,24 @@ export default function HomeScreen({ navigation }) {
       if(dadosTotal !== ""){
         await AsyncStorage.setItem('@dados', JSON.stringify(dadosTotal));
         console.log("saved");
+        let aux_lista = [...doencas_lista];
+        const element = dadosTotal[0];
+        if(aux_lista.lenght === 0){
+          for(let i = 11; i < Object.keys(element).lenght; i++){
+            aux_lista.push(Object.keys(element)[i]);
+          }
+          setDoencasLista(aux_lista);
+        }
       }
       console.log(dadosTotal);
     })();
-
   }, [dadosTotal])
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View style={styles.container}>
-          <CardButton name={"DENGUE"} freq={3} navigation={navigation} />
-          <CardButton name={"BOTULISMO"} freq={2} />
-          <CardButton name={"exemplinho"} freq={1} />
-          <CardButton name={"CAAAAAAAAAAAAAAAAAAA"} freq={0} />
+          {doencas_lista.map(doenca => <CardButton key={doenca} name={doenca} freq={3} navigation={navigation} />)}
           <Text style={styles.paragraph}>Com base em Minha Localização</Text>
           <Text style={styles.paragraph}>Atualizado por último em: xx/xx/xxxx</Text>
         </View>
